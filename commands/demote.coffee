@@ -23,6 +23,7 @@ do_command = (client, message, args) ->
 
 module.exports =
     admin: yes
+    args: "user mention"
     name: "demote"
     help: "Demotes someone to plebian status."
     func: do_command

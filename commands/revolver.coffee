@@ -26,10 +26,10 @@ make_emoji = (num) ->
 
 do_command = (client, message, args) ->
     unless Math.random() < chance
-        message.channel.send "#{if args? then args.join " " else }" + make_emoji(round++) + ":gun:"
+        message.channel.send "#{if args? then args.join " " else }" + " " + make_emoji(round++) + " " + ":gun:"
         chance += 1/6
     else
-        message.channel.send "#{if args? then args.join " " else }" + ":boom:" + ":gun:"
+        message.channel.send "#{if args? then args.join " " else }" + " " + ":boom:" + " " + ":gun:"
         round = 1
         chance = 1/6
 
