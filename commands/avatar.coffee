@@ -1,11 +1,8 @@
 do_command = (client, message, args) ->
     if args[0]?.toLowerCase() is "big"
-        message.channel.send message.author.avatarURL
+        message.channel.send if message.author.avatarURL? then message.author.avatarURL else "no avatar sry"
     else
-        message.channel.send 
-            files: [
-                message.author.avatarURL.slice 0, message.author.avatarURL.length - 9
-            ]
+        message.channel.send if message.author.avatarURL? then files: [ message.author.avatarURL.slice 0, message.author.avatarURL.length - 9 ] else "no avatar sry"
 module.exports =
     admin: no
     name: "avatar"

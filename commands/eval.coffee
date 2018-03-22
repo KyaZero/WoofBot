@@ -6,6 +6,7 @@ do_command = (client, message, args) ->
 
 module.exports =
     admin: yes
+    args: "condition/statement"
     name: "eval"
     help: "Evaluates a condition/statement."
     func: do_command

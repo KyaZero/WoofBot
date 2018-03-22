@@ -1,5 +1,9 @@
 do_command = (client, message, args) ->
-    nr = if args[0]? then args[0] else 100
+    if args[0]?
+        nr = unless isNaN args[0] then args[0] else 100
+    else
+        nr = 100
+        
     if message.content.toLowerCase().includes "chance" or message.content.toLowerCase().includes "odds"
         percent = true
         nr = 100
@@ -11,7 +15,7 @@ do_command = (client, message, args) ->
 
 module.exports =
     admin: no
-    args: "none | number | chance | odds"
+    args: "none | number | chance/odds"
     name: "roll"
     help: "Rolls a random number"
     func: do_command
