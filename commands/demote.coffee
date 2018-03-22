@@ -7,7 +7,7 @@ do_command = (client, message, args) ->
     unless user?
         return
 
-    client.logger.info "Trying to remove: #{user?.id} (#{user?.username}) from the admin list..."
+    client.logger.info "Trying to remove: #{user?.id} (#{user?.user.username}) from the admin list..."
     
     if user.id in client.admins
         index = admins.indexOf(user.id)
@@ -16,10 +16,11 @@ do_command = (client, message, args) ->
         fs.writeFile "./data/admins.json", JSON.stringify(admins), "utf8", (err) ->
             if err
                 client.logger.warn err
-            client.logger.info "Removed #{user.id} (#{user.username}) from the admin list!"
+            client.logger.info "Removed #{user.id} (#{user.user.username}) from the admin list!"
+            message.channel.send "`Demoted #{user.user.username} to plebian status.`"
             client.admins = admins
     else
-        client.logger.info "#{user.id} (#{user.username}) didnt exist in the admin list!"
+        client.logger.info "#{user.id} (#{user.user.username}) didnt exist in the admin list!"
 
 module.exports =
     admin: yes
