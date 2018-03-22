@@ -64,6 +64,7 @@ client.bot.on "message", (message) ->
         args = message.content.slice(client.config.prefix.length).split " "
         cmd = args[0]
         args = args.splice 1
+        client.logger.info "#{message.author.tag}: #{client.config.prefix}#{cmd} #{args}"
         if cmd of client.commands
             unless client.commands[cmd].func? 
                 return
