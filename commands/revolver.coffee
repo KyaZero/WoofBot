@@ -35,6 +35,7 @@ do_command = (client, message, args) ->
 
 module.exports =
     admin: no
+    args: "none | text"
     name: "revolver"
     help: "Play a game of russian roulette!"
     func: do_command

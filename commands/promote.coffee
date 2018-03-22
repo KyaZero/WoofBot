@@ -25,6 +25,7 @@ do_command = (client, message, args) ->
 
 module.exports =
     admin: yes
+    args: "none | user mention"
     name: "promote"
     help: "Promotes someone to admin."
     func: do_command

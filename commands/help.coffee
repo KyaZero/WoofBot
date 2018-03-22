@@ -2,7 +2,7 @@ do_command = (client, message, args) ->
     cmd = args[0]
     if args.length > 0
         if cmd of client.commands and client.commands[cmd].help
-            message.channel.send "`#{client.config.prefix + cmd} : \"#{client.commands[cmd].help}\"`"
+            message.channel.send "`#{client.config.prefix + cmd} #{if client.commands[cmd].args? then "(" + client.commands[cmd].args + ") " else ""}: \"#{client.commands[cmd].help}\"`"
         else 
             message.channel.send "`There is no command with the name \"#{cmd}\"!`"
     else
@@ -12,7 +12,7 @@ do_command = (client, message, args) ->
         for name, command of client.commands
             if command.help
                 obj = 
-                    name: "#{client.config.prefix + name}"
+                    name: "#{client.config.prefix + name} #{if command.args? then "(" + command.args + ")" else ""}"
                     value: "#{command.help} #{if command.admin is yes then "(Admin Only!)" else ""}"
                 help.push obj
         message.channel.send 
@@ -26,6 +26,7 @@ do_command = (client, message, args) ->
 
 module.exports =
     admin: no
+    args: "none | command"
     name: "help"
-    help: "Shows the help message of a command."
+    help: "Gives some information about a command."
     func: do_command
