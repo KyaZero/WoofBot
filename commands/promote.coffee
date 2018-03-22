@@ -1,6 +1,8 @@
 fs = require "fs"
 
 do_command = (client, message, args) ->
+    if message.author.bot
+        return
     admins = client.admins
     user = null
     if args?

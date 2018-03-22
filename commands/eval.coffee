@@ -1,4 +1,6 @@
 do_command = (client, message, args) ->
+    if message.author.bot
+        return
     try 
         message.channel.send "`#{eval args.join " "}`"
     catch e

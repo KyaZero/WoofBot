@@ -66,6 +66,8 @@ client.bot.on "message", (message) ->
         args = args.splice 1
         client.logger.info "#{message.author.tag}: #{client.config.prefix}#{cmd} #{args}"
         if cmd of client.commands
+            # if message.author.bot
+            #     return client.logger.info "A bot tried to trigger the command #{client.config.prefix}#{cmd}"
             unless client.commands[cmd].func? 
                 return
             if (client.commands[cmd].admin and is_admin message.author) or not client.commands[cmd].admin
