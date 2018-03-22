@@ -54,7 +54,7 @@ client.bot.on "debug", (message) ->
 
 client.bot.on "guildMemberAdd", (member) ->
     client.logger.info "User #{member.user.username} has joined the server!"
-    role = if member.user.bot then message.guild.roles.find "name", "Not Bots" else message.guild.roles.find "name", "Bot Nation"
+    role = unless member.user.bot then message.guild.roles.find "name", "Not Bots" else message.guild.roles.find "name", "Bot Nation"
     member.addRole role 
 
 client.bot.on "message", (message) ->
