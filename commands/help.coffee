@@ -20,7 +20,7 @@ do_command = (client, message, args) ->
                 "author": 
                     "name": client.bot.user.username
                     "icon_url": client.bot.user.avatarURL
-                "description": "The commands you can use!"
+                "description": "The commands you can use:"
                 "color": 11111111
                 "fields": help
 
@@ -28,5 +28,5 @@ module.exports =
     admin: no
     args: "none | command"
     name: "help"
-    help: "Gives some information about a command!"
+    help: "Gives some information about a command."
     func: do_command
