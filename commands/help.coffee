@@ -28,5 +28,5 @@ module.exports =
     admin: no
     args: "none | command"
     name: "help"
-    help: "Gives some information about a command."
+    help: "Gives some information about a command!"
     func: do_command
