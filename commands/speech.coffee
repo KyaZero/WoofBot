@@ -12,10 +12,11 @@ message_triggers = [
 lastmessage = null
 
 is_trigger = (message) -> 
-    if message.content.toLowerCase() in message_triggers or Math.random() < 0.1 or message.content.toLowerCase() is lastmessage?.toLowerCase()
-        return true 
-    else
-        return false
+    for msg in message_triggers
+        if message.content.toLowerCase().includes(msg) or Math.random() < 0.1 or message.content.toLowerCase() is lastmessage?.toLowerCase()
+            return true 
+        else
+            return false
 
 get_line = (client, callback) ->
     filename = "./data/channel_logs/"
@@ -37,7 +38,7 @@ do_listen = (client, message) ->
             get_line client, (msg) ->
                 if msg is " " or msg is "" or (msg.split " ").length > 15 or msg.substr 0, 1 is client.config.prefix
                     try
-                        client.logger.info "Re-rolled a bad message. Message: #{msg}"
+                        client.logger.info "Re-rolled a bad message. Message: #{if (msg.split " ").length > 15 then "...long message..." else msg}"
                         do_listen client, message
                         return
                     catch e
