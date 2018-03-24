@@ -1,8 +1,7 @@
 fs = require "fs"
 
-message_triggers = [ 
-    "bot",
-    "boi",
+message_triggers = [
+    "bot", "boi",
     "oof",
     "owo",
     "haha",
@@ -15,8 +14,7 @@ is_trigger = (message) ->
     for msg in message_triggers
         if message.content.toLowerCase().includes(msg) or Math.random() < 0.1 or message.content.toLowerCase() is lastmessage?.toLowerCase()
             return true 
-        else
-            return false
+    return false                
 
 get_line = (client, callback) ->
     filename = "./data/channel_logs/"
