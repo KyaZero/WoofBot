@@ -15,6 +15,7 @@ do_command = (client, message, args) ->
 
 module.exports =
     admin: no
+    bot: yes
     args: "none | number | chance/odds"
     name: "roll"
     help: "Rolls a random number"

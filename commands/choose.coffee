@@ -6,6 +6,7 @@ do_command = (client, message, args) ->
 
 module.exports =
     admin: no
+    bot: yes
     args: "comma-separated text"
     name: "choose"
     help: "Let the bot pick something."

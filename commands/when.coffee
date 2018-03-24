@@ -3,6 +3,7 @@ do_command = (client, message, args) ->
 
 module.exports =
     admin: no
+    bot: yes
     name: "when"
     help: "Tells you when your account was made"
     func: do_command

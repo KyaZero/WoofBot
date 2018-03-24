@@ -7,7 +7,4 @@ do_listen = (client, message) ->
             message.channel.send "Hi #{args.join " "}, I'm dad!"
 
 module.exports =
-    admin: no
-    name: "imdad"
-    func: null
     listen: do_listen

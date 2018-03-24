@@ -5,6 +5,7 @@ do_command = (client, message, args) ->
 
 module.exports =
     admin: yes
+    bot: yes
     args: "name"
     name: "username"
     help: "Change the bot's username."

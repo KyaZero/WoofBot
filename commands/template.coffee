@@ -6,6 +6,7 @@ do_listen = (client, message) ->
 
 module.exports =
     admin: no #is it an admin only command?
+    bot: no #can the bot run this command?
     args: null #the argument documentation for the command
     name: null #a command name, what you write to call it
     help: null #a help message

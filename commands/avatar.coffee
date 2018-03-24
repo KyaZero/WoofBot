@@ -6,6 +6,7 @@ do_command = (client, message, args) ->
         
 module.exports =
     admin: no
+    bot: yes
     name: "avatar"
     args: "none | big"
     help: "Sends the link to your avatar."

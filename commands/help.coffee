@@ -26,6 +26,7 @@ do_command = (client, message, args) ->
 
 module.exports =
     admin: no
+    bot: no
     args: "none | command"
     name: "help"
     help: "Gives some information about a command."

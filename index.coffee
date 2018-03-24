@@ -12,8 +12,8 @@ client =
     auth: require "./data/auth.json"
     logger: log
     bot: new Discord.Client()
-    commands: { }
-    listeners: [ ]
+    commands: {}
+    listeners: []
     admins: require "./data/admins.json"
 
 load_commands = ->
@@ -34,8 +34,7 @@ is_admin = (user) ->
         return true
     if user.id in client.admins
         return true
-    else 
-        return false
+    return false
 
 load_everything = ->
     load_commands()
@@ -46,9 +45,7 @@ client.bot.on "ready", ->
     load_everything()
 
 client.bot.on "debug", (message) ->
-    if message.toLowerCase().includes "heartbeat"
-        return
-    if message.toLowerCase().includes "token"
+    if message.toLowerCase().includes "heartbeat" or message.toLowerCase().includes "token"
         return
     client.logger.info message
 
@@ -65,11 +62,11 @@ client.bot.on "message", (message) ->
         args = message.content.slice(client.config.prefix.length).split " "
         cmd = args[0]
         args = args.splice 1
-        client.logger.info "#{message.author.tag}: #{client.config.prefix}#{cmd} #{args}"
+        client.logger.info "#{message.author.tag}: #{client.config.prefix}#{cmd} #{args.join " "}"
         if cmd of client.commands
-            # if message.author.bot
-            #     return client.logger.info "A bot tried to trigger the command #{client.config.prefix}#{cmd}"
-            unless client.commands[cmd].func? 
+            if message.author.bot and not client.commands[cmd].bot
+                return client.logger.info "A bot tried to trigger the command #{client.config.prefix}#{cmd}"
+            unless client.commands[cmd].func?
                 return
             if (client.commands[cmd].admin and is_admin message.author) or not client.commands[cmd].admin
                 client.commands[cmd].func client, message, args

@@ -4,7 +4,4 @@ do_listen = (client, message) ->
             message.channel.send("**" + msg.last().content + "**")
 
 module.exports =
-    admin: no
-    name: "wat"
-    func: null
     listen: do_listen
