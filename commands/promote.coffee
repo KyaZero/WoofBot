@@ -13,7 +13,7 @@ do_command = (client, message, args) ->
 
     client.logger.info "Trying to add: #{user?.id} (#{user?.username}) to the admin list..."
 
-    unless user.id in client.admins
+    unless user.id in admins
         admins.push user.id
         fs.writeFile "./data/admins.json", JSON.stringify(admins), "utf8", (err) ->
             if err

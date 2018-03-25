@@ -12,7 +12,7 @@ lastmessage = null
 
 is_trigger = (message) -> 
     for msg in message_triggers
-        if message.content.toLowerCase().includes(msg) or Math.random() < 0.1 or message.content.toLowerCase() is lastmessage?.toLowerCase()
+        if message.content.toLowerCase().includes(msg) or Math.random() < 0.01 or message.content.toLowerCase() is lastmessage?.toLowerCase()
             return true 
     return false                
 
@@ -36,7 +36,7 @@ do_listen = (client, message) ->
             get_line client, (msg) ->
                 if msg is " " or msg is "" or (msg.split " ").length > 15 or msg.substr 0, 1 is client.config.prefix
                     try
-                        client.logger.info "Re-rolled a bad message. Message: #{if (msg.split " ").length > 15 then "...long message..." else msg}"
+                        client.logger.info "Re-rolled a bad message. Message: #{if (msg.split " ").length > 15 then "[long message]" else if (msg is " " or msg is "") then "[empty message]" else msg}"
                         do_listen client, message
                         return
                     catch e

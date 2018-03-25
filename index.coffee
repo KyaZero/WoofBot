@@ -15,6 +15,7 @@ client =
     commands: {}
     listeners: []
     admins: require "./data/admins.json"
+    ignored: require "./data/ignorelist.json"
 
 load_commands = ->
     command_list = fs.readdirSync "./commands/"
@@ -29,6 +30,16 @@ load_commands = ->
 load_admins = ->
     client.logger.info "Found #{client.admins.length} admins!"
 
+load_ignorelist = ->
+    guild_count = 0
+    channel_count = 0
+    for k, v of client.ignored
+        guild_count++
+        for id in v
+            channel_count++
+
+    client.logger.info "Found #{channel_count} ignored channels in #{guild_count} guilds!"
+
 is_admin = (user) ->
     unless client.admins.length > 0
         return true
@@ -36,9 +47,21 @@ is_admin = (user) ->
         return true
     return false
 
+is_ignored = (message) ->
+    if message.content.toLowerCase().includes("!listen") and is_admin message.author
+        return false
+    unless Object.keys(client.ignored).length > 0
+        return false
+    for k, v of client.ignored
+        if message.channel?.id in v
+            client.logger.info "Ignored a message by #{message.author.tag}"
+            return true
+    return false
+
 load_everything = ->
     load_commands()
     load_admins()
+    load_ignorelist()
 
 client.bot.on "ready", ->
     client.logger.info "Logged in as #{client.bot.user.tag}"
@@ -55,6 +78,9 @@ client.bot.on "guildMemberAdd", (member) ->
     # member.addRole role 
 
 client.bot.on "message", (message) ->
+    if is_ignored message
+        return
+
     for listener in client.listeners
         listener client, message
 
