@@ -28,9 +28,11 @@ load_commands = ->
                 client.listeners.push command.listen
 
 load_admins = ->
+    #TODO add file checking, is file exist otherwise make file exist
     client.logger.info "Found #{client.admins.length} admins!"
 
 load_ignorelist = ->
+    #TODO add file checking, is file exist otherwise make file exist
     guild_count = 0
     channel_count = 0
     for k, v of client.ignored
