@@ -1,2 +1,4 @@
 data/auth.json
 data/channel_logs/
+data/admins.json
+data/ignorelist.json
