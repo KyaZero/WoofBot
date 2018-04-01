@@ -10,8 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "discord.js": "^11.3.2",
     "forever-monitor": "^1.7.1",
+    "request": "^2.85.0",
+    "snoowrap": "^1.15.2",
     "winston": "^2.4.1"
   }
 }
