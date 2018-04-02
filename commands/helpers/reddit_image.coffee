@@ -1,7 +1,5 @@
 request = require "request"
 
-links = []
-
 get_image = (client, html) ->
     obj = JSON.parse html
     value = {}
@@ -9,7 +7,7 @@ get_image = (client, html) ->
     unless obj.data?
         return "Reddit machine br0ke"
     rnd = Math.floor Math.random() * obj.data.children.length
-    unless obj?.data?.children?.images? or obj.data.children[rnd].data.url.includes(".png") or obj.data.children[rnd].data.url.includes(".jpg")
+    unless obj?.data?.children?.images? or not (obj.data.children[rnd].data.url.includes(".png") or obj.data.children[rnd].data.url.includes(".jpg"))
         src = obj.data.children[rnd].data.url
         if src.toLowerCase().includes "comments"
             src = obj.data.children[rnd].data.selftext
@@ -17,7 +15,7 @@ get_image = (client, html) ->
     else
         src = obj?.data?.children?[rnd].data.preview?.images[0].source.url
     unless src?
-        client.logger.info src
+        client.logger.info obj.data.children[rnd].data.url
         client.logger.info "its a broke thus we recurse"
         get_image client, html
         return " "
@@ -30,8 +28,7 @@ get_image = (client, html) ->
     value.is_comment = is_comment
     return value
 
-random_image = (client, message, linkarray) ->
-    links = linkarray
+random_image = (client, message, links) ->
     request links[Math.floor Math.random() * links.length], (error, response, html) ->
         if error
             return client.logger.error error
