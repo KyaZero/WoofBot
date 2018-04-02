@@ -3,10 +3,10 @@ reddit = require "../commands/helpers/reddit_image.coffee"
 links = [
     "https://www.reddit.com/r/dankmemes.json?sort=new?limit=100",
     "https://www.reddit.com/r/dankmemes.json?sort=hot?limit=100",
-    "https://www.reddit.com/r/dankmemes.json?sort=top?limit=100",
     "https://www.reddit.com/r/coaxedintoasnafu.json?sort=new?limit=100",
     "https://www.reddit.com/r/coaxedintoasnafu.json?sort=hot?limit=100",
-    "https://www.reddit.com/r/coaxedintoasnafu.json?sort=top?limit=100"
+    "https://www.reddit.com/r/prequelmemes.json?sort=new?limit=100",
+    "https://www.reddit.com/r/prequelmemes.json?sort=hot?limit=100"
 ]
 
 do_command = (client, message, args) ->

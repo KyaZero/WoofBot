@@ -17,13 +17,11 @@ get_image = (client, html) ->
     unless src?
         client.logger.info obj.data.children[rnd].data.url
         client.logger.info "its a broke thus we recurse"
-        get_image client, html
-        return " "
+        return get_image client, html
     unless is_comment
-        unless src.toLowerCase().includes(".jpg") or src.toLowerCase().includes(".png") or src.toLowerCase().includes(".gif") or src.toLowerCase().includes("gfycat") or src.toLowerCase().includes(".jpeg")
+        unless src.toLowerCase().includes(".jpg") or src.toLowerCase().includes(".png") or src.toLowerCase().includes("gfycat") or src.toLowerCase().includes(".jpeg")
             client.logger.info "#{src} was not an image thus we recurse"
-            get_image client, html
-            return " "
+            return get_image client, html
     value.src = src
     value.is_comment = is_comment
     return value
@@ -43,7 +41,8 @@ random_image = (client, message, links) ->
                 return " "
             message.channel.send src
             return " "
-        format = src.substring src.length - 4, src.length
+        if src? 
+            format = src.substring src.length - 4, src.length
         if format is ".png" or format is ".jpg"
             message.channel.send
                 files: [src]
