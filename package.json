@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "coffee": "^4.1.0",
     "discord.js": "^11.3.2",
     "forever-monitor": "^1.7.1",
     "request": "^2.85.0",

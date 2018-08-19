@@ -1,8 +1,8 @@
 reddit = require "../commands/helpers/reddit_image.coffee"
 
 links = [
-    "https://www.reddit.com/r/hmmm/new.json?limit=100",
-    "https://www.reddit.com/r/hmmm/hot.json?limit=100"
+    "https://www.reddit.com/r/cursedimages/new.json?limit=100",
+    "https://www.reddit.com/r/cursedimages/hot.json?limit=100"
 ]
 
 do_command = (client, message, args) ->
@@ -11,6 +11,6 @@ do_command = (client, message, args) ->
 module.exports =
     admin: no
     bot: yes
-    name: "hmmm"
-    help: "hmmm."
+    name: "cursed"
+    help: "cursed images... hmm"
     func: do_command

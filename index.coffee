@@ -70,7 +70,7 @@ client.bot.on "ready", ->
     load_everything()
 
 client.bot.on "debug", (message) ->
-    if message.toLowerCase().includes "heartbeat" or message.toLowerCase().includes "token"
+    if message.toLowerCase().includes("heartbeat") or message.toLowerCase().includes("token")
         return
     client.logger.info message
 
@@ -88,7 +88,7 @@ client.bot.on "message", (message) ->
 
     if message.content.startsWith client.config.prefix
         args = message.content.slice(client.config.prefix.length).split " "
-        cmd = args[0]
+        cmd = args[0].toLowerCase()
         args = args.splice 1
         client.logger.info "#{message.author.tag}: #{client.config.prefix}#{cmd} #{args.join " "}"
         if cmd of client.commands
