@@ -68,4 +68,5 @@ do_listen = (client, message) ->
                 lastmessage = msg
 
 module.exports =
+    bot: yes
     listen: do_listen

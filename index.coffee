@@ -16,6 +16,7 @@ client =
     listeners: []
     admins: require "./data/admins.json"
     ignored: require "./data/ignorelist.json"
+    volume: 1
 
 load_commands = ->
     command_list = fs.readdirSync "./commands/"
