@@ -20,6 +20,7 @@
     "request": "^2.85.0",
     "snoowrap": "^1.15.2",
     "winston": "^2.4.1",
+    "youtube-info": "^1.2.0",
     "ytdl-core": "^0.24.0"
   }
 }

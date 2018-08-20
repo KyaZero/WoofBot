@@ -3,12 +3,10 @@ streamOptions = { seek: 0, volume: 0 };
 vc = null
 stream = null
 do_command = (client, message, args) ->
-    streamOptions.volume = client.volume
+    streamOptions.volume = 1
     vc = message.member.voiceChannel
     stream = YTDL 'https://www.youtube.com/watch?v=9sMDLv0GxRc', { filter : 'audioonly', quality: "lowest" }
-    setTimeout do_meme, 1000
-
-do_meme = () ->
+    message.delete()
     if vc
         vc.join().then (connection) ->
             dispatcher = connection.playStream stream, streamOptions

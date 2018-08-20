@@ -16,7 +16,7 @@ client =
     listeners: []
     admins: require "./data/admins.json"
     ignored: require "./data/ignorelist.json"
-    volume: 1
+    volume: 0.1
 
 load_commands = ->
     command_list = fs.readdirSync "./commands/"
@@ -83,6 +83,8 @@ client.bot.on "guildMemberAdd", (member) ->
 client.bot.on "message", (message) ->
     if is_ignored message
         return
+    if Math.random() > 0.99
+        message.react "🤔"
 
     for listener in client.listeners
         listener client, message

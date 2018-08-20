@@ -62,7 +62,7 @@ do_listen = (client, message) ->
                         message.channel.send "#{msg}"
                     else
                         get_emote client, (emote) ->
-                            message.channel.send "#{msg.toLowerCase()} #{if Math.random() > 0.5 then emote else ""}"
+                            message.channel.send "#{msg} #{if Math.random() > 0.5 then emote else ""}"
                 catch e
                     client.logger.error e
                 lastmessage = msg
