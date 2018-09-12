@@ -28,7 +28,11 @@ get_emote = (client, callback) ->
         callback lines[Math.floor Math.random() * lines.length]
 
 okay_message = (msg, prefix) ->
-    return not ((msg is " ") or (msg is "") or ((msg.split " ").length > 15) or ((msg.split " ").length < 2) or (msg.substr 0, 1 is prefix) or (msg.substr 0, 1 is ".") or (msg.substr 0, 1 is "+"))
+    if not ((msg is " ") or (msg is "") or ((msg.split " ").length > 15) or ((msg.split " ").length < 2) or (msg.substr 0, 1 is prefix) or (msg.substr 0, 1 is ".") or (msg.substr 0, 1 is "+"))
+        ok = yes
+    if msg.includes "`"
+        ok = no
+    return ok
 
 get_line = (client, callback) ->
     filename = "./data/channel_logs/"
