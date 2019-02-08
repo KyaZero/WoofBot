@@ -37,8 +37,8 @@ do_command = (client, message, args) ->
     ]
     nsfw_allowed = false
     if message.channel.name.toLowerCase().includes("nsfw") or message.channel.nsfw
-        nsfw_allowed = true        
-    reddit.image client, message, links, nr, yes
+        nsfw_allowed = true
+    reddit.image client, message, links, nr, nsfw_allowed
 
 module.exports =
     admin: no

@@ -16,7 +16,7 @@ get_image = (client, html, nr, selftext_allowed, nsfw_allowed, recursion_count =
     rnd = Math.floor Math.random() * obj.data.children.length
     unless nr is -1
         rnd = nr
-    if obj?.data?.children[rnd]?.data?.over_18?
+    if obj?.data?.children[rnd]?.data?.over_18
         is_nsfw = true
     unless obj?.data?.children?.images? or not (obj.data.children[rnd].data.url.includes(".png") or obj.data.children[rnd].data.url.includes(".jpg") or obj.data.children[rnd].data.url.includes("imgur"))
         src = obj.data.children[rnd].data.url
@@ -43,9 +43,9 @@ get_image = (client, html, nr, selftext_allowed, nsfw_allowed, recursion_count =
             # console.log obj.data.children[rnd]
             return get_image client, html, nr, selftext_allowed, nsfw_allowed, recursion_count
 
-    if is_nsfw and not nsfw_allowed
-        client.logger.info "nsfw not allowed so recursing"
-        return get_image client, html, nr, selftext_allowed, nsfw_allowed, recursion_count
+    # if is_nsfw and not nsfw_allowed
+        # client.logger.info "nsfw not allowed so recursing"
+        # return get_image client, html, nr, selftext_allowed, nsfw_allowed, recursion_count
     value.src = src
     value.is_comment = is_comment
     value.is_selftext = is_selftext
@@ -59,12 +59,14 @@ random_image = (client, message, links, nr = -1, nsfw_allowed = yes, selftext_al
         value = get_image client, html, nr, selftext_allowed, nsfw_allowed
         unless value
             return message.channel.send "Unknown subreddit or other error.."
+        if value.is_nsfw and not nsfw_allowed
+            return message.channel.send "Found NSFW post in a non-NSFW channel, sorry :)"
         src = value.src
         title = if value.title? then "`#{value.title}`" else " "
 
         if value.is_comment or value.is_selftext
             if src.length > 2000
-                src = src.substring 0, 1990
+                src = src.substring 0, 2000 - title.length
             if src is " " or src is ""
                 random_image client, message, linkarray
                 return " "
