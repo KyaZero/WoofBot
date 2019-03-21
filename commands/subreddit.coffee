@@ -28,6 +28,7 @@ valid_statement = (arg) ->
         return false
 
 do_command = (client, message, args) ->
+    if args.length is 0 then return
     sr = if args[0]? then args[0] else all
     mode = if valid_sorting args[1] then args[1] else "hot"
     nr = if valid_number args[2] then args[2] else -1
